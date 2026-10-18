@@ -1,101 +1,335 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101827">
-<meta name="description" content="Centro de control para agentes, tareas y aprobaciones de Mi Oficina IA.">
-<link rel="manifest" href="manifest.json">
-<title>Mi Oficina IA</title>
+<meta name="theme-color" content="#0f766e">
+<title>Cobranzas by Esstrada</title>
 <style>
-:root{color-scheme:dark;--bg:#0b1020;--panel:#111a2d;--panel2:#172238;--line:#26344e;--text:#edf3ff;--muted:#9eacc5;--blue:#a8c6ff;--green:#7fe0bb;--amber:#ffd27d;--red:#ff9292;--r:17px}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#1a2a49,transparent 45%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100vh}.side{padding:22px 14px;border-right:1px solid var(--line);background:#0b1221dd;display:flex;flex-direction:column;gap:22px}.brand{display:flex;gap:10px;align-items:center;padding:0 7px}.logo{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#a5c6ff,#8be0c2);color:#0b1424;font-size:20px;font-weight:900}.brand small{display:block;color:var(--muted)}.nav{display:grid;gap:5px}.nav button{border:0;text-align:left;color:var(--muted);background:transparent;padding:11px 12px;border-radius:11px}.nav button.active,.nav button:hover{background:var(--panel2);color:var(--text)}.note{margin-top:auto;border:1px solid var(--line);border-radius:13px;padding:13px;color:var(--muted);font-size:12px}.note b{display:block;color:var(--green);margin-bottom:4px}.main{width:100%;max-width:1450px;margin:auto;padding:27px clamp(15px,4vw,45px) 45px;min-width:0}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:25px}.eyebrow{color:var(--blue);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}.top h1{font-size:clamp(25px,4vw,35px);letter-spacing:-1px;margin:4px 0}.muted{color:var(--muted)}.pill,.tag{border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:var(--muted);font-size:11px;white-space:nowrap}.pill{padding:8px 11px}.pill i{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:6px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat,.panel,.card{border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(160deg,#151f34,#101827)}.stat{padding:16px}.stat .muted{font-size:12px}.num{font-size:29px;font-weight:850;letter-spacing:-1px;margin:7px 0 1px}.layout{display:grid;grid-template-columns:1.2fr .8fr;gap:15px}.panel{padding:18px;min-width:0}.ph{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.panel h2{font-size:17px;margin:0}.view{display:none}.view.active{display:block}.btn{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--panel2);color:var(--text);font-weight:650}.btn.primary{background:var(--blue);color:#0b1424;border-color:var(--blue)}.btn.ghost{background:transparent}.btn.danger{color:var(--red)}.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.agent,.task{border:1px solid var(--line);border-radius:14px;background:#131e32;padding:13px;margin-bottom:10px}.agent{display:flex;gap:11px;align-items:center}.avatar{width:42px;height:42px;border-radius:12px;background:#263956;display:grid;place-items:center;font-size:21px;flex-shrink:0}.grow{flex:1;min-width:0}.grow strong{display:block}.grow small{display:block;color:var(--muted);overflow-wrap:anywhere}.tag.green{color:var(--green);border-color:#285b4c}.tag.amber{color:var(--amber);border-color:#67532c}.tag.red{color:var(--red);border-color:#66383e}.activity{display:grid;gap:13px}.event{display:flex;gap:10px}.dot{width:8px;height:8px;border-radius:50%;background:var(--blue);margin-top:7px;flex-shrink:0}.event strong{display:block;font-size:13px}.event small{color:var(--muted)}.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}.section-title h2{font-size:23px;margin:0 0 3px}.section-title p{margin:0;color:var(--muted)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}.field{display:grid;gap:6px;margin-bottom:13px}.field label{font-size:12px;color:var(--muted)}.field input,.field textarea,.field select,.search{width:100%;background:#0b1322;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 11px}.field textarea{min-height:85px;resize:vertical}.search{max-width:300px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{padding:16px}.card p{font-size:13px;color:var(--muted);min-height:38px;white-space:pre-wrap;overflow-wrap:anywhere}.actions{display:flex;gap:7px;flex-wrap:wrap}.task h3{font-size:15px;margin:0}.task p{font-size:13px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}.task-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.meta{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.empty{border:1px dashed var(--line);border-radius:13px;padding:23px;text-align:center;color:var(--muted)}.empty b{display:block;color:var(--text);margin-bottom:3px}.notice{padding:13px 14px;border:1px solid #66522b;background:#292315;border-radius:13px;color:#ffe2a4;font-size:13px;margin-bottom:17px}.notice b{display:block;margin-bottom:3px}.modalbg{display:none;position:fixed;inset:0;background:#020611bf;z-index:5;align-items:center;justify-content:center;padding:15px}.modalbg.open{display:flex}.modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:#111a2d;border:1px solid var(--line);border-radius:18px;padding:20px}.modalhead,.modalactions{display:flex;justify-content:space-between;align-items:center;gap:10px}.modalhead h2{margin:0 0 14px}.modalactions{justify-content:flex-end;margin-top:14px}.close{background:transparent;border:0;color:var(--muted);font-size:23px}.check{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:12px;margin:10px 0}.toast{display:none;position:fixed;bottom:18px;right:18px;background:#d8ffef;color:#10241c;border-radius:11px;padding:12px 15px;max-width:calc(100vw - 36px);z-index:9}.foot{margin-top:22px;font-size:12px;color:var(--muted)}a{color:var(--blue)}
-@media(max-width:900px){.shell{grid-template-columns:1fr}.side{position:sticky;top:0;z-index:3;padding:9px 12px;border-right:0;border-bottom:1px solid var(--line);gap:10px}.brand{padding:0 3px}.brand small,.note{display:none}.logo{width:33px;height:33px}.nav{display:flex;overflow:auto;gap:3px}.nav button{white-space:nowrap;padding:8px 10px;font-size:12px}.main{padding-top:19px}.layout{grid-template-columns:1fr}}@media(max-width:620px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{padding:13px}.num{font-size:25px}.top{flex-direction:column}.grid2{grid-template-columns:1fr}.panel{padding:14px}.section-title{flex-direction:column}.search{max-width:none}.pill{white-space:normal}}
+:root{--v:#0f766e;--vo:#115e59;--bg:#f1f5f4;--c:#fff;--t:#0f172a;--g:#64748b;--r:#dc2626;--ok:#16a34a;--b:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--t);padding-bottom:90px}
+.hide{display:none!important}
+header{background:var(--v);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
+header h1{font-size:17px}
+header small{opacity:.85;font-size:12px;display:block}
+header button{background:rgba(255,255,255,.18);color:#fff;border:0;padding:8px 12px;border-radius:8px;font-size:13px}
+.wrap{max-width:560px;margin:0 auto;padding:14px}
+.auth{max-width:400px;margin:40px auto;padding:20px}
+.auth h2{color:var(--v);margin-bottom:4px}
+.auth p{color:var(--g);font-size:14px;margin-bottom:16px}
+input,textarea{width:100%;padding:12px;border:1px solid var(--b);border-radius:10px;font-size:16px;margin-bottom:10px;background:#fff;font-family:inherit}
+textarea{min-height:170px;resize:vertical}
+label{font-size:13px;color:var(--g);display:block;margin:0 0 4px 2px}
+.btn{width:100%;padding:13px;border:0;border-radius:10px;font-size:16px;font-weight:600;background:var(--v);color:#fff}
+.btn:active{background:var(--vo)}
+.btn.sec{background:#e2e8f0;color:var(--t)}
+.btn.wa{background:#25d366;color:#06330f}
+.link{background:none;border:0;color:var(--v);font-size:14px;margin-top:12px;width:100%;text-decoration:underline}
+.msg{font-size:13px;margin-top:8px;color:var(--r);text-align:center}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.stat{background:var(--c);border-radius:12px;padding:12px;border:1px solid var(--b)}
+.stat span{font-size:12px;color:var(--g);display:block}
+.stat b{font-size:20px}
+.stat.red b{color:var(--r)}.stat.green b{color:var(--ok)}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--b);background:#fff;font-size:14px;font-weight:600;color:var(--g)}
+.tabs button.on{background:var(--v);color:#fff;border-color:var(--v)}
+.card{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:12px;margin-bottom:10px}
+.card .top{display:flex;justify-content:space-between;gap:8px}
+.card .n{font-weight:700;font-size:16px}
+.card .c{font-size:13px;color:var(--g);margin-top:2px}
+.card .m{font-weight:700;font-size:17px;white-space:nowrap}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:99px;margin-top:8px}
+.badge.ok{background:#dcfce7;color:#166534}.badge.warn{background:#fef3c7;color:#92400e}.badge.bad{background:#fee2e2;color:#991b1b}.badge.paid{background:#e0f2fe;color:#075985}
+.acts{display:flex;gap:8px;margin-top:10px}
+.acts button{flex:1;padding:10px 6px;border:0;border-radius:9px;font-size:14px;font-weight:600}
+.acts .w{background:#25d366;color:#06330f;flex:2}
+.acts .p{background:#e0f2fe;color:#075985}
+.acts .d{background:#fee2e2;color:#991b1b;flex:.6}
+.small{font-size:12px;color:var(--g);margin-top:6px}
+.empty{text-align:center;color:var(--g);padding:40px 10px;font-size:15px}
+.fab{position:fixed;right:16px;bottom:18px;background:var(--v);color:#fff;border:0;border-radius:99px;padding:15px 20px;font-size:16px;font-weight:700;box-shadow:0 6px 18px rgba(15,118,110,.45);z-index:6}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.55);display:flex;align-items:flex-end;justify-content:center;z-index:20}
+.sheet{background:#fff;width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:18px;max-height:92vh;overflow:auto}
+.sheet h3{margin-bottom:12px;color:var(--v)}
+.row{display:flex;gap:8px}.row>div{flex:1}
+.foot{text-align:center;color:var(--g);font-size:12px;margin-top:20px}
 </style>
 </head>
 <body>
-<div class="shell">
-<aside class="side">
- <div class="brand"><div class="logo">M</div><div><b>Mi Oficina IA</b><small>Centro de operaciones</small></div></div>
- <nav class="nav" aria-label="Navegación">
-  <button class="active" data-view="inicio">◫ Resumen</button><button data-view="agentes">✳ Mis agentes</button><button data-view="tareas">▤ Tareas</button><button data-view="aprobaciones">✓ Aprobaciones</button><button data-view="ajustes">⚙ Ajustes</button>
- </nav>
- <div class="note"><b>● Modo seguro activo</b>Las propuestas requieren revisión humana. Los datos se guardan en este navegador.</div>
-</aside>
-<main class="main">
-<header class="top"><div><div class="eyebrow">Panel de control · versión inicial</div><h1 id="page-title">Tu oficina, en orden.</h1><div class="muted" id="page-sub">Organiza agentes, tareas y entregables en un solo lugar.</div></div><div class="pill"><i></i> Espacio local listo</div></header>
-<section class="view active" id="view-inicio">
- <div class="stats"><div class="stat"><div class="muted">Agentes</div><div class="num" id="s-agents">3</div><div class="muted">Perfiles configurados</div></div><div class="stat"><div class="muted">Tareas activas</div><div class="num" id="s-tasks">0</div><div class="muted">Pendientes o en proceso</div></div><div class="stat"><div class="muted">Por aprobar</div><div class="num" id="s-review">0</div><div class="muted">Esperan tu decisión</div></div><div class="stat"><div class="muted">Completadas</div><div class="num" id="s-done">0</div><div class="muted">Trabajo finalizado</div></div></div>
- <div class="notice"><b>Esta primera versión organiza el trabajo, pero aún no ejecuta modelos externos.</b>Permite crear agentes, tareas, borradores y aprobaciones. La investigación web, generación real con IA y publicación requieren conectar servicios después.</div>
- <div class="layout"><section class="panel"><div class="ph"><h2>Tus agentes</h2><button class="btn ghost" data-go="agentes">Ver todos →</button></div><div id="home-agents"></div></section><section class="panel"><div class="ph"><h2>Actividad reciente</h2><span class="tag">Local</span></div><div class="activity" id="activity"></div></section></div>
- <section class="panel" style="margin-top:15px"><div class="ph"><h2>Flujo de trabajo seguro</h2><span class="tag amber">Aprobación humana</span></div><div class="grid2"><div class="agent"><div class="avatar">1</div><div class="grow"><strong>Definir</strong><small>Asigna objetivo e instrucciones.</small></div></div><div class="agent"><div class="avatar">2</div><div class="grow"><strong>Preparar</strong><small>Registra el borrador del resultado.</small></div></div><div class="agent"><div class="avatar">3</div><div class="grow"><strong>Revisar</strong><small>Tú apruebas o solicitas cambios.</small></div></div><div class="agent"><div class="avatar">4</div><div class="grow"><strong>Publicar después</strong><small>Se habilitará con integraciones autorizadas.</small></div></div></div></section>
-</section>
-<section class="view" id="view-agentes"><div class="section-title"><div><h2>Mis agentes</h2><p>Crea perfiles especializados para tu trabajo.</p></div><button class="btn primary" id="new-agent">＋ Crear agente</button></div><div class="toolbar"><input class="search" id="agent-search" placeholder="Buscar agente…"></div><div class="grid2" id="agent-grid"></div></section>
-<section class="view" id="view-tareas"><div class="section-title"><div><h2>Centro de tareas</h2><p>Define objetivos y guarda resultados para revisión.</p></div><button class="btn primary" id="new-task">＋ Nueva tarea</button></div><div class="toolbar"><select class="search" id="task-filter"><option value="all">Todas</option><option value="active">Activas</option><option value="review">Por aprobar</option><option value="done">Completadas</option></select></div><div id="task-list"></div></section>
-<section class="view" id="view-aprobaciones"><div class="section-title"><div><h2>Bandeja de aprobación</h2><p>Solo tú decides si una propuesta queda aprobada.</p></div><span class="tag amber">Revisión obligatoria</span></div><div class="notice"><b>Aprobar no equivale a publicar.</b>La aplicación registra la decisión, pero no envía contenido a redes ni a servicios externos.</div><div id="approval-list"></div></section>
-<section class="view" id="view-ajustes"><div class="section-title"><div><h2>Ajustes del espacio</h2><p>Configura el espacio y respalda tus datos.</p></div></div><div class="layout"><section class="panel"><h2>Espacio de trabajo</h2><div class="field"><label for="workspace">Nombre del espacio</label><input id="workspace" value="Mi Oficina IA"></div><div class="field"><label for="owner">Responsable</label><input id="owner" value="Administrador"></div><button class="btn primary" id="save-settings">Guardar ajustes</button></section><section class="panel"><h2>Respaldo y privacidad</h2><p class="muted">Exporta tus agentes y tareas a JSON para guardarlos o transferirlos.</p><div class="toolbar"><button class="btn" id="export">Exportar JSON</button><label class="btn" for="import">Importar JSON</label><input id="import" type="file" accept=".json,application/json" hidden></div><p class="muted" style="font-size:12px">No incluyas contraseñas ni claves API. Los datos no se sincronizan entre dispositivos.</p><button class="btn danger" id="reset">Restablecer datos de ejemplo</button></section></div><section class="panel" style="margin-top:15px"><h2>Integraciones pendientes</h2><div class="activity" style="margin-top:14px"><div class="event"><span class="dot"></span><div><strong>Modelo de IA</strong><small class="muted">Para generar contenido real.</small></div><span class="tag amber">Pendiente</span></div><div class="event"><span class="dot"></span><div><strong>Investigación web</strong><small class="muted">Para recopilar tendencias y fuentes.</small></div><span class="tag amber">Pendiente</span></div><div class="event"><span class="dot"></span><div><strong>Publicación social</strong><small class="muted">Requiere permisos de cada plataforma.</small></div><span class="tag amber">Pendiente</span></div><div class="event"><span class="dot"></span><div><strong>Almacenamiento compartido</strong><small class="muted">Para sincronizar dispositivos.</small></div><span class="tag amber">Pendiente</span></div></div></section></section>
-<div class="foot">Mi Oficina IA · Prototipo funcional local · <a href="https://github.com/kriptonius/mi-oficina-ia" target="_blank" rel="noreferrer">Repositorio en GitHub</a></div>
-</main></div>
-<div class="modalbg" id="agent-modal" role="dialog" aria-modal="true" aria-labelledby="agent-modal-title"><div class="modal"><div class="modalhead"><h2 id="agent-modal-title">Crear agente</h2><button class="close" data-close="agent-modal" aria-label="Cerrar">×</button></div><form id="agent-form"><div class="field"><label for="a-name">Nombre</label><input id="a-name" required maxlength="60" placeholder="Ej. Dominique"></div><div class="field"><label for="a-role">Especialidad</label><input id="a-role" required maxlength="100" placeholder="Ej. Gestor de contenido"></div><div class="field"><label for="a-icon">Icono</label><select id="a-icon"><option>✳</option><option>🧠</option><option>✍️</option><option>🔎</option><option>🗂️</option><option>🩺</option><option>📈</option><option>🎬</option></select></div><div class="field"><label for="a-goal">Objetivo e instrucciones</label><textarea id="a-goal" maxlength="1200" placeholder="Qué debe preparar, límites y cómo entregar resultados…"></textarea></div><div class="modalactions"><button type="button" class="btn" data-close="agent-modal">Cancelar</button><button class="btn primary">Guardar agente</button></div></form></div></div>
-<div class="modalbg" id="task-modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title"><div class="modal"><div class="modalhead"><h2 id="task-modal-title">Nueva tarea</h2><button class="close" data-close="task-modal" aria-label="Cerrar">×</button></div><form id="task-form"><div class="field"><label for="t-title">Título</label><input id="t-title" required maxlength="120" placeholder="Ej. Preparar ideas de contenido"></div><div class="field"><label for="t-agent">Asignar agente</label><select id="t-agent" required></select></div><div class="field"><label for="t-goal">Objetivo / instrucciones</label><textarea id="t-goal" required maxlength="2000" placeholder="Describe el resultado que necesitas…"></textarea></div><div class="field"><label for="t-output">Borrador o resultado (opcional)</label><textarea id="t-output" maxlength="5000" placeholder="Escribe o pega el resultado que quieres revisar…"></textarea></div><label class="check"><input type="checkbox" id="t-review" checked> Enviar el resultado a aprobación cuando se guarde.</label><div class="modalactions"><button type="button" class="btn" data-close="task-modal">Cancelar</button><button class="btn primary">Guardar tarea</button></div></form></div></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-(()=>{'use strict';
-const KEY='miOficinaIA.v1',now=()=>new Date().toISOString(),uid=p=>p+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
-const initial={workspace:'Mi Oficina IA',owner:'Administrador',agents:[
-{id:'agent-content',name:'Creador de contenido',role:'Estrategia y contenido',icon:'✍️',goal:'Proponer ideas, guiones breves y calendarios editoriales. Entregar borradores para revisión humana.',createdAt:now()},
-{id:'agent-research',name:'Analista de tendencias',role:'Investigación y análisis',icon:'🔎',goal:'Organizar preguntas de investigación, referencias y conclusiones. No inventar fuentes.',createdAt:now()},
-{id:'agent-ops',name:'Coordinador de proyectos',role:'Planificación y operaciones',icon:'🗂️',goal:'Convertir objetivos en tareas claras, priorizar y mantener registro de decisiones y entregables.',createdAt:now()}
-],tasks:[],activity:[{text:'Espacio de trabajo inicializado',date:now()}]};
-const clone=x=>JSON.parse(JSON.stringify(x));let state=load();
-function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&Array.isArray(x.agents)&&Array.isArray(x.tasks))return x}catch(e){}return clone(initial)}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){notify('No se pudo guardar. Exporta un respaldo JSON.')}render()}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function date(s){try{return new Intl.DateTimeFormat('es-PE',{dateStyle:'short',timeStyle:'short'}).format(new Date(s))}catch(e){return ''}}
-function notify(s){const el=document.getElementById('toast');el.textContent=s;el.style.display='block';clearTimeout(notify.timer);notify.timer=setTimeout(()=>el.style.display='none',3000)}
-function log(text){state.activity.unshift({text,date:now()});state.activity=state.activity.slice(0,25)}
-function agent(id){return state.agents.find(a=>a.id===id)}
-const statuses={active:['Activa','green'],review:['Por aprobar','amber'],approved:['Aprobada','green'],rejected:['Requiere cambios','red'],done:['Completada','green']};
-function tag(status){const s=statuses[status]||['Pendiente',''];return '<span class="tag '+s[1]+'">'+s[0]+'</span>'}
-function agentRow(a){return '<div class="agent"><div class="avatar">'+esc(a.icon||'✳')+'</div><div class="grow"><strong>'+esc(a.name)+'</strong><small>'+esc(a.role)+'</small></div><span class="tag green">Perfil</span></div>'}
-function render(){document.getElementById('s-agents').textContent=state.agents.length;document.getElementById('s-tasks').textContent=state.tasks.filter(t=>!['done','approved'].includes(t.status)).length;document.getElementById('s-review').textContent=state.tasks.filter(t=>t.status==='review').length;document.getElementById('s-done').textContent=state.tasks.filter(t=>['done','approved'].includes(t.status)).length;
-document.getElementById('home-agents').innerHTML=state.agents.slice(0,4).map(agentRow).join('')||'<div class="empty">Crea tu primer agente.</div>';
-document.getElementById('activity').innerHTML=state.activity.slice(0,7).map(a=>'<div class="event"><span class="dot"></span><div><strong>'+esc(a.text)+'</strong><small>'+date(a.date)+'</small></div></div>').join('')||'<div class="empty">Sin actividad registrada.</div>';
-const q=(document.getElementById('agent-search').value||'').toLowerCase();const list=state.agents.filter(a=>(a.name+' '+a.role+' '+a.goal).toLowerCase().includes(q));
-document.getElementById('agent-grid').innerHTML=list.map(a=>'<article class="card"><div class="agent" style="border:0;padding:0;background:transparent"><div class="avatar">'+esc(a.icon||'✳')+'</div><div class="grow"><strong>'+esc(a.name)+'</strong><small>'+esc(a.role)+'</small></div></div><p>'+esc(a.goal||'Sin instrucciones añadidas.')+'</p><div class="actions"><button class="btn" data-task-agent="'+esc(a.id)+'">＋ Tarea</button><button class="btn" data-edit-agent="'+esc(a.id)+'">Editar</button><button class="btn ghost danger" data-delete-agent="'+esc(a.id)+'">Eliminar</button></div></article>').join('')||'<div class="empty">No hay agentes que coincidan.</div>';
-document.getElementById('t-agent').innerHTML=state.agents.map(a=>'<option value="'+esc(a.id)+'">'+esc(a.name)+' · '+esc(a.role)+'</option>').join('');
-const filter=document.getElementById('task-filter').value;let tasks=state.tasks;if(filter==='active')tasks=tasks.filter(t=>['active','rejected'].includes(t.status));if(filter==='review')tasks=tasks.filter(t=>t.status==='review');if(filter==='done')tasks=tasks.filter(t=>['done','approved'].includes(t.status));
-const renderTask=t=>'<article class="task"><div class="task-head"><div><h3>'+esc(t.title)+'</h3><div class="meta"><span class="tag">'+esc(agent(t.agentId)?.name||'Agente eliminado')+'</span>'+tag(t.status)+'<span class="tag">'+date(t.updatedAt||t.createdAt)+'</span></div></div><button class="btn ghost" data-open-task="'+esc(t.id)+'">Editar resultado</button></div><p>'+esc(t.goal)+'</p><p><b>Resultado:</b> '+esc(t.output||'Aún no hay borrador.')+'</p><div class="actions">'+(t.status==='review'?'<button class="btn primary" data-approve="'+t.id+'">Aprobar</button><button class="btn" data-reject="'+t.id+'">Pedir cambios</button>':'')+(['active','rejected'].includes(t.status)?'<button class="btn" data-submit="'+t.id+'">Enviar a aprobación</button>':'')+(t.status==='approved'?'<button class="btn" data-complete="'+t.id+'">Marcar completada</button>':'')+'<button class="btn ghost danger" data-delete-task="'+t.id+'">Eliminar</button></div></article>';
-document.getElementById('task-list').innerHTML=tasks.slice().sort((a,b)=>new Date(b.updatedAt||b.createdAt)-new Date(a.updatedAt||a.createdAt)).map(renderTask).join('')||'<div class="empty"><b>No hay tareas en esta vista</b>Crea una tarea para comenzar.</div>';
-const approvals=state.tasks.filter(t=>t.status==='review');document.getElementById('approval-list').innerHTML=approvals.map(renderTask).join('')||'<div class="empty"><b>No hay propuestas pendientes</b>Cuando envíes un resultado a revisión aparecerá aquí.</div>';
-document.getElementById('workspace').value=state.workspace||'Mi Oficina IA';document.getElementById('owner').value=state.owner||'Administrador'}
-const titles={inicio:['Tu oficina, en orden.','Organiza agentes, tareas y entregables en un solo lugar.'],agentes:['Tu equipo de agentes.','Define perfiles especializados para cada tipo de trabajo.'],tareas:['Del objetivo al entregable.','Registra instrucciones y resultados con trazabilidad.'],aprobaciones:['Tu aprobación es la última palabra.','Revisa cada propuesta antes de darla por aprobada.'],ajustes:['Configura tu espacio.','Respalda tu trabajo y prepara futuras integraciones.']};
-function view(name){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===name));document.getElementById('page-title').textContent=titles[name][0];document.getElementById('page-sub').textContent=titles[name][1];window.scrollTo({top:0,behavior:'smooth'})}
-document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>view(b.dataset.view)));document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>view(b.dataset.go)));
-const open=id=>document.getElementById(id).classList.add('open'),close=id=>document.getElementById(id).classList.remove('open');
-document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>close(b.dataset.close)));document.querySelectorAll('.modalbg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)close(m.id)}));document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modalbg').forEach(m=>close(m.id))});
-function openAgent(a){document.getElementById('agent-form').reset();document.getElementById('agent-modal-title').textContent=a?'Editar agente':'Crear agente';document.getElementById('a-name').value=a?.name||'';document.getElementById('a-role').value=a?.role||'';document.getElementById('a-icon').value=a?.icon||'✳';document.getElementById('a-goal').value=a?.goal||'';document.getElementById('agent-form').dataset.edit=a?.id||'';open('agent-modal')}
-document.getElementById('new-agent').addEventListener('click',()=>openAgent(null));document.getElementById('agent-form').addEventListener('submit',e=>{e.preventDefault();const form=e.currentTarget,id=form.dataset.edit,data={name:document.getElementById('a-name').value.trim(),role:document.getElementById('a-role').value.trim(),icon:document.getElementById('a-icon').value,goal:document.getElementById('a-goal').value.trim()};if(id){Object.assign(agent(id),data);log('Agente actualizado: '+data.name)}else{state.agents.push({id:uid('agent'),...data,createdAt:now()});log('Agente creado: '+data.name)}close('agent-modal');persist();notify(id?'Agente actualizado':'Agente creado')});
-function openTask(agentId){if(!state.agents.length){notify('Primero crea un agente.');view('agentes');return}document.getElementById('task-form').reset();render();if(agentId)document.getElementById('t-agent').value=agentId;document.getElementById('task-form').dataset.edit='';document.getElementById('task-modal-title').textContent='Nueva tarea';open('task-modal')}
-document.getElementById('new-task').addEventListener('click',()=>openTask());document.getElementById('task-form').addEventListener('submit',e=>{e.preventDefault();const form=e.currentTarget,id=form.dataset.edit,title=document.getElementById('t-title').value.trim(),output=document.getElementById('t-output').value.trim(),needsReview=document.getElementById('t-review').checked;const data={title,agentId:document.getElementById('t-agent').value,goal:document.getElementById('t-goal').value.trim(),output,status:output&&needsReview?'review':'active',updatedAt:now()};if(id){Object.assign(state.tasks.find(t=>t.id===id),data);log('Tarea actualizada: '+title)}else{state.tasks.push({id:uid('task'),...data,createdAt:now()});log('Tarea creada: '+title)}close('task-modal');persist();view(data.status==='review'?'aprobaciones':'tareas');notify(data.status==='review'?'Enviada a aprobación':'Tarea guardada')});
-document.getElementById('agent-search').addEventListener('input',render);document.getElementById('task-filter').addEventListener('change',render);
-document.body.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
-if(d.taskAgent)openTask(d.taskAgent);
-if(d.editAgent){const a=agent(d.editAgent);if(a)openAgent(a)}
-if(d.deleteAgent){const a=agent(d.deleteAgent);if(a&&confirm('¿Eliminar agente '+a.name+'? Las tareas se conservarán.')){state.agents=state.agents.filter(x=>x.id!==a.id);log('Agente eliminado: '+a.name);persist();notify('Agente eliminado')}}
-if(d.openTask){const t=state.tasks.find(x=>x.id===d.openTask);if(t){document.getElementById('t-title').value=t.title;document.getElementById('t-agent').value=t.agentId;document.getElementById('t-goal').value=t.goal;document.getElementById('t-output').value=t.output||'';document.getElementById('t-review').checked=true;document.getElementById('task-form').dataset.edit=t.id;document.getElementById('task-modal-title').textContent='Editar tarea';open('task-modal')}}
-if(d.submit){const t=state.tasks.find(x=>x.id===d.submit);if(t){if(!t.output){const x=prompt('Escribe o pega el borrador para revisar:','');if(x===null)return;t.output=x.trim()}if(!t.output){notify('Añade un resultado antes de enviarlo.');return}t.status='review';t.updatedAt=now();log('Enviado a aprobación: '+t.title);persist();notify('Enviado a aprobación')}}
-if(d.approve){const t=state.tasks.find(x=>x.id===d.approve);if(t&&confirm('¿Apruebas este resultado? No se publicará automáticamente.')){t.status='approved';t.updatedAt=now();log('Resultado aprobado: '+t.title);persist();notify('Aprobado; no se ha publicado')}}
-if(d.reject){const t=state.tasks.find(x=>x.id===d.reject);if(t){t.status='rejected';t.updatedAt=now();log('Cambios solicitados: '+t.title);persist();notify('Marcado para cambios')}}
-if(d.complete){const t=state.tasks.find(x=>x.id===d.complete);if(t){t.status='done';t.updatedAt=now();log('Tarea completada: '+t.title);persist();notify('Tarea completada')}}
-if(d.deleteTask){const t=state.tasks.find(x=>x.id===d.deleteTask);if(t&&confirm('¿Eliminar la tarea '+t.title+'?')){state.tasks=state.tasks.filter(x=>x.id!==t.id);log('Tarea eliminada: '+t.title);persist();notify('Tarea eliminada')}}
+
+<!-- AUTH -->
+<div id="auth" class="auth">
+  <h2>Cobranzas</h2>
+  <p>Cobra a tus clientes por WhatsApp sin incomodarte. Ingresa o crea tu cuenta.</p>
+  <label>Nombre de tu negocio (solo al registrarte)</label>
+  <input id="a-neg" placeholder="Ej: Bodega San José">
+  <label>Correo</label>
+  <input id="a-mail" type="email" placeholder="tucorreo@gmail.com" autocomplete="email">
+  <label>Contraseña (mínimo 6)</label>
+  <input id="a-pass" type="password" autocomplete="current-password">
+  <button class="btn" id="a-in">Ingresar</button>
+  <button class="link" id="a-up">Crear cuenta nueva</button>
+  <div class="msg" id="a-msg"></div>
+  <div class="foot">by ESSTRADA Co.</div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hide">
+  <header>
+    <div><h1>Cobranzas</h1><small id="h-neg"></small></div>
+    <button id="salir">Salir</button>
+  </header>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat red"><span>Por cobrar</span><b id="s-pend">S/ 0</b></div>
+      <div class="stat red"><span>Vencido</span><b id="s-venc">S/ 0</b></div>
+      <div class="stat green"><span>Recuperado</span><b id="s-rec">S/ 0</b></div>
+      <div class="stat"><span>Deudores activos</span><b id="s-n">0</b></div>
+    </div>
+    <div class="tabs">
+      <button id="t-pend" class="on">Pendientes</button>
+      <button id="t-pag">Pagados</button>
+    </div>
+    <div id="lista"></div>
+    <div class="foot">Cobranzas by ESSTRADA Co.</div>
+  </div>
+  <button class="fab" id="nuevo">+ Deudor</button>
+</div>
+
+<!-- MODAL NUEVO -->
+<div id="m-nuevo" class="modal hide">
+  <div class="sheet">
+    <h3>Nuevo deudor</h3>
+    <label>Nombre</label><input id="n-nom" placeholder="Juan Pérez">
+    <label>Celular (9 dígitos)</label><input id="n-cel" type="tel" inputmode="numeric" placeholder="987654321">
+    <div class="row">
+      <div><label>Monto (S/)</label><input id="n-mon" type="number" inputmode="decimal" placeholder="150"></div>
+      <div><label>Vence el</label><input id="n-ven" type="date"></div>
+    </div>
+    <label>Concepto (opcional)</label><input id="n-con" placeholder="Mercadería, arreglo de moto, consulta...">
+    <button class="btn" id="n-ok">Guardar</button>
+    <button class="btn sec" id="n-no" style="margin-top:8px">Cancelar</button>
+    <div class="msg" id="n-msg"></div>
+  </div>
+</div>
+
+<!-- MODAL MENSAJE -->
+<div id="m-msg" class="modal hide">
+  <div class="sheet">
+    <h3 id="w-tit">Mensaje de cobro</h3>
+    <div class="small" id="w-niv" style="margin:-6px 0 10px"></div>
+    <textarea id="w-txt"></textarea>
+    <button class="btn wa" id="w-go">Abrir WhatsApp y enviar</button>
+    <button class="btn sec" id="w-no" style="margin-top:8px">Cancelar</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, deleteDoc, doc, serverTimestamp, increment } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+// ====== PEGA AQUÍ TU CONFIG DE FIREBASE ======
+const firebaseConfig = {
+  apiKey: "AIzaSyAHmJkr5aMLjq4ztiBIhPR3hbj7Zmm7n-o",
+  authDomain: "cobranzas-esstrada.firebaseapp.com",
+  projectId: "cobranzas-esstrada",
+  storageBucket: "cobranzas-esstrada.firebasestorage.app",
+  messagingSenderId: "658958936479",
+  appId: "1:658958936479:web:c09fe174361ab38a0a35aa"
+};
+// =============================================
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const soles = n => "S/ " + Number(n).toLocaleString("es-PE", {minimumFractionDigits: 0, maximumFractionDigits: 2});
+
+let user = null, negocio = "", datos = [], tab = "pend", actual = null;
+
+/* ---------- fechas ---------- */
+function parseLocal(s){ const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); }
+function hoy(){ const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+function diasAtraso(vence){ return Math.round((hoy() - parseLocal(vence)) / 86400000); }
+function fechaBonita(s){ return parseLocal(s).toLocaleDateString("es-PE", {day:"numeric", month:"long"}); }
+
+/* ---------- AUTH ---------- */
+const authMsg = t => $("a-msg").textContent = t || "";
+function errAuth(e){
+  const c = e.code || "";
+  if (c.includes("invalid-credential") || c.includes("wrong-password") || c.includes("user-not-found")) return "Correo o contraseña incorrectos.";
+  if (c.includes("email-already-in-use")) return "Ese correo ya tiene cuenta. Toca Ingresar.";
+  if (c.includes("weak-password")) return "La contraseña debe tener mínimo 6 caracteres.";
+  if (c.includes("invalid-email")) return "El correo no es válido.";
+  if (c.includes("network")) return "Sin conexión. Revisa tu internet.";
+  return "Error: " + (e.message || c);
+}
+
+$("a-in").onclick = async () => {
+  authMsg("");
+  try { await signInWithEmailAndPassword(auth, $("a-mail").value.trim(), $("a-pass").value); }
+  catch (e) { authMsg(errAuth(e)); }
+};
+$("a-up").onclick = async () => {
+  authMsg("");
+  const neg = $("a-neg").value.trim();
+  if (!neg) return authMsg("Escribe el nombre de tu negocio.");
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, $("a-mail").value.trim(), $("a-pass").value);
+    await updateProfile(cred.user, { displayName: neg });
+    negocio = neg; $("h-neg").textContent = neg;
+  } catch (e) { authMsg(errAuth(e)); }
+};
+$("salir").onclick = () => signOut(auth);
+
+onAuthStateChanged(auth, u => {
+  if (u) {
+    user = u;
+    negocio = u.displayName || "mi negocio";
+    $("h-neg").textContent = negocio;
+    $("auth").classList.add("hide");
+    $("app").classList.remove("hide");
+    cargar();
+  } else {
+    user = null; datos = [];
+    $("app").classList.add("hide");
+    $("auth").classList.remove("hide");
+  }
 });
-document.getElementById('save-settings').addEventListener('click',()=>{state.workspace=document.getElementById('workspace').value.trim()||'Mi Oficina IA';state.owner=document.getElementById('owner').value.trim()||'Administrador';log('Ajustes guardados');persist();notify('Ajustes guardados')});
-document.getElementById('export').addEventListener('click',()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='mi-oficina-ia-respaldo.json';a.click();URL.revokeObjectURL(u);notify('Respaldo preparado')});
-document.getElementById('import').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!Array.isArray(x.agents)||!Array.isArray(x.tasks))throw Error();if(confirm('Importar respaldo y reemplazar datos actuales?')){state={workspace:x.workspace||'Mi Oficina IA',owner:x.owner||'Administrador',agents:x.agents,tasks:x.tasks,activity:Array.isArray(x.activity)?x.activity:[]};log('Respaldo importado');persist();notify('Respaldo importado')}}catch(err){notify('Archivo JSON inválido')}e.target.value=''});
-document.getElementById('reset').addEventListener('click',()=>{if(confirm('Se borrarán los datos actuales de este navegador. ¿Restablecer los datos de ejemplo?')){state=clone(initial);persist();notify('Datos restaurados')}});
-render();
-if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
-})();
+
+/* ---------- DATOS ---------- */
+async function cargar(){
+  try {
+    const snap = await getDocs(query(collection(db, "deudores"), where("userId", "==", user.uid)));
+    datos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    pintar();
+  } catch (e) {
+    $("lista").innerHTML = '<div class="empty">Error al cargar. Revisa que Firestore y sus reglas estén publicados.</div>';
+  }
+}
+
+function pintar(){
+  const pend = datos.filter(d => !d.pagado);
+  const pag = datos.filter(d => d.pagado);
+  const totPend = pend.reduce((a,d) => a + Number(d.monto), 0);
+  const totVenc = pend.filter(d => diasAtraso(d.vence) > 0).reduce((a,d) => a + Number(d.monto), 0);
+  const totRec = pag.reduce((a,d) => a + Number(d.monto), 0);
+  $("s-pend").textContent = soles(totPend);
+  $("s-venc").textContent = soles(totVenc);
+  $("s-rec").textContent = soles(totRec);
+  $("s-n").textContent = pend.length;
+
+  const lista = tab === "pend"
+    ? pend.sort((a,b) => diasAtraso(b.vence) - diasAtraso(a.vence))
+    : pag.sort((a,b) => (b.pagadoEn || "").localeCompare(a.pagadoEn || ""));
+  if (!lista.length) {
+    $("lista").innerHTML = '<div class="empty">' + (tab === "pend" ? "No tienes deudores pendientes.<br>Toca <b>+ Deudor</b> para agregar el primero." : "Aún no hay pagos registrados.") + "</div>";
+    return;
+  }
+  $("lista").innerHTML = lista.map(d => {
+    const dias = diasAtraso(d.vence);
+    let badge;
+    if (d.pagado) badge = '<span class="badge paid">Pagó</span>';
+    else if (dias > 30) badge = `<span class="badge bad">${dias} días de atraso</span>`;
+    else if (dias > 0) badge = `<span class="badge warn">${dias} día${dias>1?"s":""} de atraso</span>`;
+    else if (dias === 0) badge = '<span class="badge warn">Vence hoy</span>';
+    else badge = `<span class="badge ok">Vence en ${-dias} día${dias<-1?"s":""}</span>`;
+    const aviso = d.avisos ? `<div class="small">Avisos enviados: ${d.avisos}</div>` : "";
+    const acts = d.pagado ? "" : `
+      <div class="acts">
+        <button class="w" onclick="cobrar('${esc(d.id)}')">Cobrar por WhatsApp</button>
+        <button class="p" onclick="pago('${esc(d.id)}')">Pagó</button>
+        <button class="d" onclick="borrar('${esc(d.id)}')">✕</button>
+      </div>`;
+    return `<div class="card">
+      <div class="top"><div><div class="n">${esc(d.nombre)}</div><div class="c">${esc(d.concepto || "Sin concepto")} · vence ${fechaBonita(d.vence)}</div></div>
+      <div class="m">${soles(d.monto)}</div></div>${badge}${aviso}${acts}</div>`;
+  }).join("");
+}
+
+$("t-pend").onclick = () => { tab = "pend"; $("t-pend").classList.add("on"); $("t-pag").classList.remove("on"); pintar(); };
+$("t-pag").onclick = () => { tab = "pag"; $("t-pag").classList.add("on"); $("t-pend").classList.remove("on"); pintar(); };
+
+/* ---------- NUEVO ---------- */
+$("nuevo").onclick = () => {
+  ["n-nom","n-cel","n-mon","n-con"].forEach(i => $(i).value = "");
+  const h = hoy();
+  $("n-ven").value = h.getFullYear() + "-" + String(h.getMonth()+1).padStart(2,"0") + "-" + String(h.getDate()).padStart(2,"0");
+  $("n-msg").textContent = "";
+  $("m-nuevo").classList.remove("hide");
+};
+$("n-no").onclick = () => $("m-nuevo").classList.add("hide");
+$("n-ok").onclick = async () => {
+  const nombre = $("n-nom").value.trim();
+  const celular = $("n-cel").value.replace(/\D/g, "");
+  const monto = parseFloat($("n-mon").value);
+  const vence = $("n-ven").value;
+  if (!nombre || celular.length < 9 || !(monto > 0) || !vence) { $("n-msg").textContent = "Completa nombre, celular (9 dígitos), monto y fecha."; return; }
+  try {
+    await addDoc(collection(db, "deudores"), {
+      userId: user.uid, nombre, celular, monto, vence,
+      concepto: $("n-con").value.trim() || "",
+      pagado: false, pagadoEn: "", avisos: 0, ultimoAviso: "",
+      creado: serverTimestamp()
+    });
+    $("m-nuevo").classList.add("hide");
+    cargar();
+  } catch (e) { $("n-msg").textContent = "No se pudo guardar: " + (e.code || e.message); }
+};
+
+/* ---------- COBRAR ---------- */
+function armarMensaje(d){
+  const dias = diasAtraso(d.vence);
+  const nom = d.nombre.split(" ")[0];
+  const con = d.concepto ? ` por ${d.concepto}` : "";
+  const monto = soles(d.monto);
+  const fecha = fechaBonita(d.vence);
+  if (dias <= 0) return { nivel: "Recordatorio amable (aún no vence)", txt:
+`Hola ${nom}, te saluda ${negocio}. 😊 Te recordamos que tu pago de ${monto}${con} vence el ${fecha}. Cualquier consulta, escríbenos. ¡Gracias!` };
+  if (dias <= 7) return { nivel: "Aviso amable (1-7 días de atraso)", txt:
+`Hola ${nom}, te saluda ${negocio}. Notamos que tu pago de ${monto}${con}, que vencía el ${fecha}, aún está pendiente. Quizá se te pasó. ¿Nos confirmas cuándo podrías cancelarlo? Gracias por tu atención.` };
+  if (dias <= 30) return { nivel: "Aviso firme (8-30 días de atraso)", txt:
+`Estimado(a) ${nom}, de ${negocio}. Tu deuda de ${monto}${con} tiene ${dias} días de atraso (vencía el ${fecha}). Te pedimos regularizarla esta semana. Si tienes alguna dificultad, comunícate hoy para coordinar. Gracias.` };
+  return { nivel: "Último aviso (más de 30 días)", txt:
+`Estimado(a) ${nom}, de ${negocio}. ÚLTIMO AVISO: tu deuda de ${monto}${con} tiene ${dias} días de atraso. Necesitamos que la canceles en un plazo máximo de 48 horas o te comuniques con nosotros para acordar un pago. De no hacerlo, evaluaremos otras acciones de cobranza. Esperamos tu respuesta.` };
+}
+
+window.cobrar = id => {
+  actual = datos.find(x => x.id === id);
+  if (!actual) return;
+  const m = armarMensaje(actual);
+  $("w-tit").textContent = "Cobrar a " + actual.nombre;
+  $("w-niv").textContent = m.nivel + " · Puedes editar el texto antes de enviar";
+  $("w-txt").value = m.txt;
+  $("m-msg").classList.remove("hide");
+};
+$("w-no").onclick = () => $("m-msg").classList.add("hide");
+$("w-go").onclick = async () => {
+  if (!actual) return;
+  let cel = actual.celular.replace(/\D/g, "");
+  if (cel.length === 9) cel = "51" + cel;
+  window.open("https://wa.me/" + cel + "?text=" + encodeURIComponent($("w-txt").value), "_blank");
+  try { await updateDoc(doc(db, "deudores", actual.id), { ultimoAviso: new Date().toISOString(), avisos: increment(1) }); } catch (e) {}
+  $("m-msg").classList.add("hide");
+  cargar();
+};
+
+/* ---------- ACCIONES ---------- */
+window.pago = async id => {
+  if (!confirm("¿Confirmas que esta persona ya pagó?")) return;
+  await updateDoc(doc(db, "deudores", id), { pagado: true, pagadoEn: new Date().toISOString() });
+  cargar();
+};
+window.borrar = async id => {
+  if (!confirm("¿Borrar este deudor? No se puede deshacer.")) return;
+  await deleteDoc(doc(db, "deudores", id));
+  cargar();
+};
 </script>
-</body></html>
+</body>
+</html>
